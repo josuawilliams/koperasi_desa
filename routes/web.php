@@ -5,6 +5,7 @@ use App\Http\Controllers\Cart\DashboardController;
 use App\Http\Controllers\Product\CategoryController;
 use App\Http\Controllers\Product\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->group(function () {
@@ -23,6 +24,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('/users', [UserController::class, 'index'])->name('users.index');
+    Route::patch('/users/{user}/block', [UserController::class, 'block'])->name('users.block');
+    Route::patch('/users/{user}/unblock', [UserController::class, 'unblock'])->name('users.unblock');
 
     Route::resource('/category', CategoryController::class)->names([
         'index' => 'category.index',
