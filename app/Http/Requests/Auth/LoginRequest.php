@@ -50,6 +50,15 @@ class LoginRequest extends FormRequest
             ]);
         }
 
+        if (Auth::user()->is_blocked) {
+            Auth::guard('web')->logout();
+            RateLimiter::hit($this->throttleKey());
+
+            throw ValidationException::withMessages([
+                'email' => 'Akun Anda diblokir. Silakan hubungi super admin.',
+            ]);
+        }
+
         RateLimiter::clear($this->throttleKey());
     }
 

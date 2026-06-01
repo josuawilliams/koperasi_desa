@@ -19,6 +19,9 @@
                         <x-nav-link :href="route('category.index')" :active="request()->routeIs('category.*')">
                             {{ __('Kategori') }}
                         </x-nav-link>
+                        <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')">
+                            {{ __('Users') }}
+                        </x-nav-link>
                     @endif
                     <x-nav-link :href="url('/')" :active="request()->routeIs('/')">
                         {{ __('Homepage') }}
@@ -92,6 +95,9 @@
             @if (Auth::user()->hasRole('super_admin'))
                 <x-responsive-nav-link :href="route('category.index')" :active="request()->routeIs('category.*')">
                     {{ __('Kategori') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')">
+                    {{ __('Users') }}
                 </x-responsive-nav-link>
             @endif
             <x-responsive-nav-link :href="url('/')" :active="request()->routeIs('welcome')">
